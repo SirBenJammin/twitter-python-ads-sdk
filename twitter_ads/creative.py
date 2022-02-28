@@ -334,6 +334,7 @@ resource_property(ScheduledTweet, 'created_at', readonly=True, transform=TRANSFO
 resource_property(ScheduledTweet, 'completed_at', read_only=True, transform=TRANSFORM.TIME)
 resource_property(ScheduledTweet, 'id', read_only=True)
 resource_property(ScheduledTweet, 'id_str', read_only=True)
+resource_property(ScheduledTweet, 'name', read_only=True)
 resource_property(ScheduledTweet, 'scheduled_status', read_only=True)
 resource_property(ScheduledTweet, 'tweet_id', readonly=True)
 resource_property(ScheduledTweet, 'updated_at', readonly=True, transform=TRANSFORM.TIME)
@@ -580,16 +581,29 @@ resource_property(TweetPreview, 'preview', readonly=True)
 resource_property(TweetPreview, 'tweet_id', readonly=True)
 
 
-class Tweets(object):
+class Tweets(Resource):
+
+    PROPERTIES = {}
 
     RESOURCE_COLLECTION = '/' + API_VERSION + '/accounts/{account_id}/tweets'
 
-    @classmethod
-    @FlattenParams
-    def all(klass, account, **kwargs):
-        resource = klass.RESOURCE_COLLECTION.format(account_id=account.id)
-        request = Request(account.client, 'get', resource, params=kwargs)
-        return Cursor(None, request)
+
+# tweets properties
+# read-only
+resource_property(Tweets, 'id', readonly=True)
+resource_property(Tweets, 'name', readonly=True)
+resource_property(Tweets, 'scheduled_status', readonly=True)
+resource_property(Tweets, 'tweet_type', readonly=True)
+resource_property(Tweets, 'nullcast', readonly=True, transform=TRANSFORM.BOOL)
+resource_property(Tweets, 'conversation_settings', readonly=True)
+resource_property(Tweets, 'retweeted', readonly=True, transform=TRANSFORM.BOOL)
+resource_property(Tweets, 'favorited', readonly=True, transform=TRANSFORM.BOOL)
+resource_property(Tweets, 'full_text', readonly=True)
+resource_property(Tweets, 'entities', readonly=True)
+resource_property(Tweets, 'user', readonly=True)
+resource_property(Tweets, 'card_uri', readonly=True)
+resource_property(Tweets, 'scheduled_at', readonly=True, transform=TRANSFORM.TIME)
+resource_property(Tweets, 'created_at', readonly=True, transform=TRANSFORM.TIME)
 
 
 class Card(Resource):

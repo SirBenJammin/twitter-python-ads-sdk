@@ -10,7 +10,7 @@ from twitter_ads import API_VERSION
 
 from twitter_ads.resource import resource_property, Resource
 from twitter_ads.creative import (AccountMedia, MediaCreative, ScheduledTweet,
-                                  Card, VideoWebsiteCard, PromotedTweet)
+                                  WebsiteCard, VideoWebsiteCard, ImageAppDownloadCard, VideoAppDownloadCard, PromotedTweet, Tweets)
 from twitter_ads.audience import CustomAudience
 from twitter_ads.campaign import (AppList, Campaign, FundingInstrument, LineItem,
                                   PromotableUser, TrackingTags, ScheduledPromotedTweet)
@@ -147,12 +147,24 @@ class Account(Resource):
         Returns a collection of Scheduled Promoted Tweets available to the current account.
         """
         return self._load_resource(ScheduledPromotedTweet, id, **kwargs)
+        
+    def tweets(self, id=None, **kwargs):
+        """
+        Returns a collection of Tweets available to the current account.
+        """
+        return self._load_resource(Tweets, id, **kwargs)
 
     def tracking_tags(self, id=None, **kwargs):
         """
         Returns a collection of Tracking Tags available to the current account.
         """
         return self._load_resource(TrackingTags, id, **kwargs)
+        
+    def website_cards(self, id=None, **kwargs):
+        """
+        Returns a collection of website cards available to the current account.
+        """
+        return self._load_resource(WebsiteCard, id, **kwargs)
 
     def video_website_cards(self, id=None, **kwargs):
         """
@@ -160,11 +172,17 @@ class Account(Resource):
         """
         return self._load_resource(VideoWebsiteCard, id, **kwargs)
 
-    def cards(self, id=None, **kwargs):
+    def image_app_download_cards(self, id=None, **kwargs):
         """
-        Returns a collection of Cards available to the current account.
+        Returns a collection of image app download cards available to the current account.
         """
-        return self._load_resource(Card, id, **kwargs)
+        return self._load_resource(ImageAppDownloadCard, id, **kwargs)
+        
+    def video_app_download_cards(self, id=None, **kwargs):
+        """
+        Returns a collection of video app download cards available to the current account.
+        """
+        return self._load_resource(VideoAppDownloadCard, id, **kwargs)
 
 
 # account properties

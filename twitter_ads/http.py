@@ -113,7 +113,7 @@ class Request(object):
                 if retry_on_timeouts:
                     if retry_count == retry_max:
                         raise Exception(e)
-                    logger.warning("Timeout occurred: resume in %s seconds"
+                    logger.warning("Timeout occurred. Backing off for %s seconds."
                                    % (int(retry_delay) / 1000))
                     time.sleep(int(retry_delay) / 1000)
                     retry_count += 1
