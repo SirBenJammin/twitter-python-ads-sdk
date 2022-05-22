@@ -607,7 +607,7 @@ resource_property(Tweets, 'scheduled_at', readonly=True, transform=TRANSFORM.TIM
 resource_property(Tweets, 'created_at', readonly=True, transform=TRANSFORM.TIME)
 
 
-class Card(Resource):
+class Card(Resource, Persistence):
 
     PROPERTIES = {}
 
@@ -634,6 +634,7 @@ class Card(Resource):
 
 # card properties
 # read-only
+resource_property(Card, 'id', readonly=True)
 resource_property(Card, 'card_uri', readonly=True)
 resource_property(Card, 'card_type', readonly=True)
 resource_property(Card, 'created_at', readonly=True, transform=TRANSFORM.TIME)

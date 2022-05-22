@@ -10,7 +10,7 @@ from twitter_ads import API_VERSION
 
 from twitter_ads.resource import resource_property, Resource
 from twitter_ads.creative import (AccountMedia, MediaCreative, ScheduledTweet,
-                                  WebsiteCard, VideoWebsiteCard, ImageAppDownloadCard, VideoAppDownloadCard, PromotedTweet, Tweets)
+                                  Card, PromotedTweet, Tweets)
 from twitter_ads.audience import CustomAudience
 from twitter_ads.campaign import (AppList, Campaign, FundingInstrument, LineItem,
                                   PromotableUser, TrackingTags, ScheduledPromotedTweet)
@@ -160,29 +160,11 @@ class Account(Resource):
         """
         return self._load_resource(TrackingTags, id, **kwargs)
         
-    def website_cards(self, id=None, **kwargs):
+    def cards(self, id=None, **kwargs):
         """
-        Returns a collection of website cards available to the current account.
+        Returns a collection of Cards available to the current account.
         """
-        return self._load_resource(WebsiteCard, id, **kwargs)
-
-    def video_website_cards(self, id=None, **kwargs):
-        """
-        Returns a collection of video website cards available to the current account.
-        """
-        return self._load_resource(VideoWebsiteCard, id, **kwargs)
-
-    def image_app_download_cards(self, id=None, **kwargs):
-        """
-        Returns a collection of image app download cards available to the current account.
-        """
-        return self._load_resource(ImageAppDownloadCard, id, **kwargs)
-        
-    def video_app_download_cards(self, id=None, **kwargs):
-        """
-        Returns a collection of video app download cards available to the current account.
-        """
-        return self._load_resource(VideoAppDownloadCard, id, **kwargs)
+        return self._load_resource(Card, id, **kwargs)
 
 
 # account properties
